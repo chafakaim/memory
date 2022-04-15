@@ -9,15 +9,20 @@ let tabend=['','','','','','','','','','','','','','','','','',''];
 // generer un nombre aleatoiere entre 0 17
 let k=17;
 let j=0;
-while(tabindex !== []){
-    let rand=Math.round(Math.random() *k);
+while(tabindex !== [] && j !== 18){
+    let rand=Math.round(Math.random()*k);
     console.log(tabindex[rand],rand);
-     tabend[j]=tabindex[rand];
+    if(tabend[j] !== ''){
+        continue;
+    }else{
+        tabend[j]=tabindex[rand];
+    }
     tabindex.splice(rand,1);
     k--;
     j++;
-    console.log(tabend);
 }
+console.log(tabend);
+console.log(tabindex);
 // piocher dans le tableau des index puis rempire un autre avec cette valeur
 
 // en doit garentire que le random ne ce repete pas et que une case qui est deja remplie ne se fait pas ecrasé
@@ -34,10 +39,10 @@ while(tabindex !== []){
 
 let im=[];
 // distribuer les image sur les back
-backs.forEach(element => {
+tabend.forEach((element,index) => {
     let img=document.createElement('img');
-    img.setAttribute('src',`./image/${tab[i]}`);
-    element.appendChild(img);
+    img.setAttribute('src',`./image/${tabend[i]}`);
+    tab[index].appendChild(img);
     i++;
     console.log(backs.length -1)
     if(i === backs.length/2){
