@@ -30,6 +30,7 @@ body{
 .image .face{
     height: 100%;
     width: 100%;
+    transform-style: preserve-3d;
     position: absolute;
     z-index:1;
     transform: perspective(100px); 
@@ -40,6 +41,7 @@ body{
     position: absolute;
     height: 100%;
     width:100%;
+    transform-style: preserve-3d;
     background-color: gray;
 
     transition: 1s all;

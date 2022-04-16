@@ -6,6 +6,7 @@ let tab=['elephant.png','giraffe.png','hippo.png','monkey.png','panda.png','parr
 let i=0;
 let tabindex=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 let tabend=['','','','','','','','','','','','','','','','','',''];
+let time=60;
 // generer un nombre aleatoiere entre 0 17
 let k=17;
 let j=0;
@@ -21,37 +22,20 @@ while(tabindex !== [] && j !== 18){
     k--;
     j++;
 }
-console.log(tabend);
-console.log(tabindex);
 // piocher dans le tableau des index puis rempire un autre avec cette valeur
-
 // en doit garentire que le random ne ce repete pas et que une case qui est deja remplie ne se fait pas ecrasé
-
-
-
-
-
-
-
-
-
-
-
 let im=[];
 // distribuer les image sur les back
 tabend.forEach((element,index) => {
     let img=document.createElement('img');
-    img.setAttribute('src',`./image/${tabend[i]}`);
-    tab[index].appendChild(img);
+    img.setAttribute('src',`./image/${tab[i]}`);
+    backs[element].appendChild(img);
     i++;
-    console.log(backs.length -1)
     if(i === backs.length/2){
         i=0;
     }   
-    
-    
-    // gestion du click
 });
+// gestion du click
 // if click sur l'une des box en lui ajoute la class active et on souvgarde son image dan on memeoir 
 function additemsfortab(e,i){
     e=e.target.parentNode;
@@ -65,7 +49,6 @@ function additemsfortab(e,i){
 
     // souvgarde de l'image
     let src=back.querySelector('img').getAttribute('src');
-
     if(im.length === 2){
         for(let i=0;i<2;i++){
             if(im[0]['img'] === im[1]['img']){
@@ -88,3 +71,10 @@ images.forEach((element , i) => {
     });
 });
 // il click une deuxiemem fois en ajoute la deuxieme photo en memoir en compare les deux 
+// gestion du temps 
+let timer=window.setInterval(function(){
+   if(time === 0){
+     clearInterval(timer);
+   }
+    time--;
+},1000)
