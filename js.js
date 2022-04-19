@@ -1,12 +1,17 @@
 
 let backs=document.querySelectorAll('.image .back');
 let images=document.querySelectorAll('.image');
+let scorematch=0;
+let score=document.querySelector('.score');
+score.innerHTML=scorematch;
+let timespan=document.querySelector('.timespan');
 // cree un tableau comptenent tout les image
 let tab=['elephant.png','giraffe.png','hippo.png','monkey.png','panda.png','parrot.png','penguin.png','pig.png','rabbit.png','snake.png']
 let i=0;
 let tabindex=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 let tabend=['','','','','','','','','','','','','','','','','',''];
 let time=60;
+timespan.innerHTML=time;
 // generer un nombre aleatoiere entre 0 17
 let k=17;
 let j=0;
@@ -44,7 +49,11 @@ function additemsfortab(e,i){
     if(face.classList.contains('active')){
         return;
     }
+   if(face !== null){
     face.classList.add('active');
+   }else{
+       return;
+   }
     back.classList.add('active');
 
     // souvgarde de l'image
@@ -52,8 +61,9 @@ function additemsfortab(e,i){
     if(im.length === 2){
         for(let i=0;i<2;i++){
             if(im[0]['img'] === im[1]['img']){
-                console.log('break');
-                break;
+              scorematch+=1;
+              score.innerHTML=scorematch;
+              break;
             }else{   
              images[im[i]['index']].querySelector('.face').classList.remove('active');
             }
@@ -65,7 +75,7 @@ function additemsfortab(e,i){
         console.log(im)
     } 
 }
-images.forEach((element , i) => {
+images.forEach((element,i) => {
     element.addEventListener('click',(e)=>{
         additemsfortab(e,i);
     });
@@ -73,8 +83,15 @@ images.forEach((element , i) => {
 // il click une deuxiemem fois en ajoute la deuxieme photo en memoir en compare les deux 
 // gestion du temps 
 let timer=window.setInterval(function(){
-   if(time === 0){
+    if(score === im.lenght -1 && time !== 0){
+      console.log('vous avez ganiez');
+        clearInterval(timer);
+        return;
+    }
+   if(time === 0 && score !== im.lenght - 1){
+       console.log('vous avez perdue la partie');
      clearInterval(timer);
    }
+    timespan.innerHTML=time;
     time--;
-},1000)
+},1000);
