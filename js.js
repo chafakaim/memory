@@ -17,7 +17,6 @@ let k=17;
 let j=0;
 while(tabindex !== [] && j !== 18){
     let rand=Math.round(Math.random()*k);
-    console.log(tabindex[rand],rand);
     if(tabend[j] !== ''){
         continue;
     }else{
